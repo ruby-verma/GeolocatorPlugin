@@ -117,13 +117,13 @@ namespace Plugin.Geolocator
 		async Task<bool> CheckWhenInUsePermission()
 		{
 			var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-			if (status != PermissionStatus.Granted)
+			if (status != PermissionStatus.Granted || status != PermissionStatus.Restricted)
 			{
 				Console.WriteLine("Currently does not have Location permissions, requesting permissions");
 
 				status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
-				if (status != PermissionStatus.Granted)
+				if (status != PermissionStatus.Granted || status != PermissionStatus.Restricted)
 				{
 					Console.WriteLine("Location permission denied, can not get positions async.");
 					return false;
@@ -136,13 +136,13 @@ namespace Plugin.Geolocator
 		async Task<bool> CheckAlwaysPermissions()
 		{
 			var status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
-			if (status != PermissionStatus.Granted)
+			if (status != PermissionStatus.Granted || status != PermissionStatus.Restricted)
 			{
 				Console.WriteLine("Currently does not have Location permissions, requesting permissions");
 
 				status = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
 
-				if (status != PermissionStatus.Granted)
+				if (status != PermissionStatus.Granted || status != PermissionStatus.Restricted)
 				{
 					Console.WriteLine("Location permission denied, can not get positions async.");
 					return false;
